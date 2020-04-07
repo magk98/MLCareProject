@@ -1,0 +1,31 @@
+INSTRUKCJA DO DOCKERA
+
+Póki co strona startowa jest na /mlcare/index 
+http://0.0.0.0:8000/mlcare/index/ 
+- to jest frontend, Magdalena masz dowolność co z tym zrobisz.
+W MLCareApp.<cośtam>urls propnuję żeby dla porządku były wszystkie urle dotyczące jednego NIE WIDOKU tylko jednego zastosowania,
+bo potem w MLCareProject.urls wystarczy jeden plik zainkludować do przedrostka. (Podejrzewam że jak zobaczycie kod to ogarniecie).
+
+Aby odpalić stronę lokalnie: 
+python manage.py migrations
+python manage.py runserver
+
+Aby odpalić na Dockerze:
+#logowanie
+docker login
+
+#ściągnięcie wersji kontenera
+docker pull mlcare/appimage:v1.0
+Jak macie spullowany projekt to w sumie nie musicie pullować dockera wystarczy poniższe:
+docker build -t mlcare/appimage:v1.0 .
+docker run -p 8000:8000 -i -t mlcare/appimage:v1.0
+#pushowanie
+docker push 
+docker push mlcare/appimage:v1.0
+Jak coś miało się zrobić a się nie zrobiło to spróbujcie docker login ;)
+Po dwukropku jest tag, ważne żeby odpalać na ostatniej wersji dockera jaką będziemy mieć (nie będą często się zmieniać).
+
+Aby odpalić na AWS:
+
+
+
